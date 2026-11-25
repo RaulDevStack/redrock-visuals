@@ -1,0 +1,87 @@
+profile.LOW=Bajo
+profile.MEDIUM=Medio
+profile.HIGH=Alto
+profile.ULTRA=Ultra
+profile.comment=Bajo: graficas integradas. Medio: GTX 1050/1650. Alto: RTX 2060/3060. Ultra: equipos potentes.
+
+screen.SHADOWS_SCREEN=Sombras
+screen.LIGHTING_SCREEN=Iluminacion
+screen.ATMOSPHERE_SCREEN=Niebla y atmosfera
+screen.CLOUDS_SCREEN=Nubes
+screen.WATER_SCREEN=Agua
+screen.POST_SCREEN=Imagen y color
+
+option.SHADOWS=Sombras
+option.SHADOWS.comment=Desactivarlas es el mayor ahorro de rendimiento.
+option.SHADOW_FILTER=Suavizado de sombras
+value.SHADOW_FILTER.0=Duro (rapido)
+value.SHADOW_FILTER.1=Suave
+value.SHADOW_FILTER.2=Muy suave
+option.shadowMapResolution=Resolucion de sombras
+option.shadowDistance=Distancia de sombras
+option.sunPathRotation=Inclinacion del sol
+option.CLOUD_SHADOWS=Sombras de nubes
+
+option.SUN_INTENSITY=Intensidad del sol
+option.MOON_INTENSITY=Intensidad de la luna
+option.AMBIENT_INTENSITY=Luz ambiente
+option.BLOCKLIGHT_INTENSITY=Luz de antorchas
+option.MIN_LIGHT=Luz minima (cuevas)
+option.EMISSIVE_STRENGTH=Brillo de bloques emisivos
+option.HANDHELD_LIGHT=Luz en la mano
+
+option.VOLUMETRIC_FOG=Niebla volumetrica
+option.VOLUMETRIC_FOG.comment=Bruma de polvo con rayos de luz entre los objetos.
+option.VL_INTENSITY=Intensidad de los rayos de luz
+option.VL_STEPS=Calidad de la niebla
+option.VL_RES=Resolucion de niebla y nubes
+option.VL_RES.comment=0.25 = mucho mas rapido, 1.0 = resolucion completa.
+option.FOG_DENSITY=Densidad de la niebla
+option.FOG_HEIGHT=Altura de la niebla
+option.FOG_FALLOFF=Caida de la niebla con la altura
+option.MORNING_FOG=Neblina al amanecer
+option.DUST_NOISE=Polvo en movimiento
+option.BORDER_FOG=Niebla en el borde del mapa
+
+option.VOLUMETRIC_CLOUDS=Nubes volumetricas
+option.CLOUD_STEPS=Calidad de las nubes
+option.CLOUD_LIGHT_STEPS=Calidad de luz en nubes
+option.CLOUD_HEIGHT=Altura de las nubes
+option.CLOUD_THICKNESS=Grosor de las nubes
+option.CLOUD_COVERAGE=Cantidad de nubes
+option.CLOUD_DENSITY=Densidad de las nubes
+option.CLOUD_SPEED=Velocidad de las nubes
+option.CLOUD_FAR=Distancia de las nubes
+
+option.SSR=Reflejos en pantalla
+option.SSR.comment=Reflejos del terreno en el agua. Sin ellos solo se refleja el cielo.
+option.SSR_STEPS=Calidad de reflejos
+option.WATER_ALPHA=Opacidad del agua
+option.WATER_FOG_DENSITY=Turbidez del agua
+option.WAVE_STRENGTH=Fuerza del oleaje
+option.WAVE_SPEED=Velocidad del oleaje
+option.REFRACTION_STRENGTH=Refraccion
+
+option.EXPOSURE=Exposicion
+option.WESTERN_GRADE=Tono western
+option.WESTERN_GRADE.comment=Calidez de la imagen. 0 = colores neutros.
+option.SATURATION=Saturacion
+option.CONTRAST=Contraste
+option.VIGNETTE=Vineta
+option.BLOOM=Resplandor (bloom)
+option.BLOOM_STRENGTH=Fuerza del resplandor
+
+screen.WAVING_SCREEN=Movimiento
+option.WAVING_PLANTS=Plantas con viento
+option.WAVING_LEAVES=Hojas con viento
+option.WAVING_WATER=Agua ondulante
+option.WAVING_WATER.comment=Olas reales en la superficie del agua (mueve la geometria).
+option.WAVING_LAVA=Lava ondulante
+option.WAVING_STRENGTH=Fuerza del viento
+option.WAVING_SPEED=Velocidad del viento
+option.WAVING_WATER_HEIGHT=Altura de las olas
+option.WAVING_LAVA_HEIGHT=Altura de las ondas de lava
+
+option.VOXEL_REFLECTIONS=Reflejos reales (voxeles)
+option.VOXEL_REFLECTIONS.comment=Trazado de rayos por los bloques cercanos: refleja tambien lo que no esta en pantalla. Gama alta. Sustituye a los reflejos en pantalla y necesita las sombras activadas.
+option.VOXEL_STEPS=Alcance de los reflejos reales

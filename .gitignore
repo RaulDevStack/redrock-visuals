@@ -1,11 +1,6 @@
-# ---------------------------------------------------------------------------
-# Closed source: the shader sources and tools stay local only.
-# The public repository only contains README, LICENSE, CHANGELOG and this file;
-# the packaged .zip files are published in the releases.
-# ---------------------------------------------------------------------------
-/*
-!/.gitignore
-!/README.md
-!/LICENSE
-!/CHANGELOG.md
-!/.github/
+# Packaged builds are published in the releases, not in the repository
+/dist/
+
+# Python
+__pycache__/
+*.pyc

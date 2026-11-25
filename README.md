@@ -10,8 +10,8 @@ It was made for the [Wild West Universe](https://github.com/RaulDevStack/wild-we
 any 1.21.1 world. It is built to be **balanced**: it looks good on a GTX 1050/1650-class graphics card and scales up
 to high-end PCs with real voxel reflections.
 
-> Redrock Visuals is closed-source software: this repository only publishes the packaged releases
-> ([Releases](https://github.com/RaulDevStack/redrock-visuals/releases)).
+> Redrock Visuals is open source under the [MIT License](LICENSE). Ready-to-use downloads are in the
+> [Releases](https://github.com/RaulDevStack/redrock-visuals/releases).
 
 ## Requirements
 
@@ -194,8 +194,64 @@ From the biggest saving to the smallest:
 - Distant Horizons is not supported yet.
 - Blocks added by other mods get standard lighting, but no waving or glow.
 
+## Building from source
+
+The repository contains the full shader pack source:
+
+```
+shaders/
+├── shaders.properties    Iris settings: profiles, menu, buffers, custom textures, voxel image
+├── block.properties      Block IDs for waving plants, leaves, water, lava and emissive blocks
+├── program/              The real shader programs (one .glsl per program, vertex and fragment together)
+├── lib/                  Shared code: settings, sky, lighting, shadows, clouds, fog, waves, voxels, noise
+├── lang/                 Menu translations (en_US, es_ES)
+├── tex/noise.png         Noise texture used by clouds, fog and waves
+└── *.vsh / *.fsh         Generated entry points (also in world-1/ and world1/ for the Nether and the End)
+tools/
+├── generate.py           Creates the entry points for every dimension and the noise texture
+├── check_shaders.py      Compiles every option variant and dimension with your real OpenGL driver
+└── ShaderCheck.java      The compiler used by check_shaders.py
+```
+
+All options live in `shaders/lib/settings.glsl` (and `lib/voxel_opts.glsl` for real reflections). Edit the code in
+`shaders/program/` and `shaders/lib/`; never edit the generated `.vsh` / `.fsh` files by hand.
+
+**Regenerate the entry points** after adding a program, or when the noise texture is missing (Python 3):
+
+```
+python tools/generate.py
+```
+
+**Test it live:** copy or link the folder into `.minecraft/shaderpacks/` and press **R** in game (the Iris reload key) to reload
+the shaders after each change.
+
+**Compile check** (optional): `check_shaders.py` expands the includes, applies several option variants (default, Low,
+High, Ultra, everything off) and compiles and links every program for the three dimensions with your graphics driver.
+It needs Java 21 and the LWJGL 3.3.3 jars in the Gradle cache (`~/.gradle/caches`), which any Minecraft mod
+development setup already has:
+
+```
+python tools/check_shaders.py <empty temporary folder>
+```
+
+**Packaging:** zip the `shaders` folder (it must be at the root of the zip) together with `README.md`, `LICENSE` and
+`CHANGELOG.md`.
+
+### How it works
+- **Forward lighting** in the gbuffers programs, with a distorted shadow map and rotated PCF.
+- **deferred** fills the procedural sky behind opaque geometry before translucents are drawn.
+- **composite** renders volumetric fog (shadow-mapped light shafts) and volumetric clouds into the corner of a buffer
+  at `VL_RES` resolution.
+- **composite1** shades the water (refraction, depth absorption, Fresnel reflections with SSR or voxel ray tracing),
+  then applies border fog and upscales the clouds and fog with depth-aware filtering.
+- **final** adds bloom from mipmaps, exposure, ACES tonemapping and the western color grade.
+- Water keeps its vanilla color because it is shaded from the vanilla texture × biome tint; the composite only adds
+  depth, refraction and reflections on top. Its normal, deep color and sky reflection are passed in `colortex3–5`.
+- **Real reflections**: `shadow.vsh` writes every nearby full cube into a 256×128×256 `R32UI` image (average color,
+  emission and a face priority, using `imageAtomicMax`), and `composite1` traces rays through it with a DDA.
+
 ## License
 
-Copyright (c) 2026 RaulDevStack. All rights reserved. See [LICENSE](LICENSE).
+Redrock Visuals is released under the [MIT License](LICENSE). Copyright (c) 2026 RaulDevStack.
 
 Minecraft is a trademark of Mojang AB. Redrock Visuals is not affiliated with Mojang AB, Microsoft or the Iris project.

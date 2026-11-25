@@ -16,3 +16,4 @@ The first public release of Redrock Visuals.
   Ultra profiles.
 - **Dimensions:** simple lighting and fog for the Nether and the End.
 - Settings menu in English and Spanish.
+- Open source under the MIT License.
